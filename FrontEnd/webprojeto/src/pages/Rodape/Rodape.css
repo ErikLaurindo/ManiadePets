@@ -1,0 +1,32 @@
+
+
+
+
+ul li {
+    display: inline;
+    margin-right:100%; 
+}
+.divparteinstale {
+    background: linear-gradient(to bottom, #00A3FF, white );
+    float: left;
+    width: 100%;
+    height:40% ;
+    overflow: hidden;
+    border-radius: 20%;
+ 
+    
+
+}
+.testeimagem {
+    float: left;
+    width: 30%;
+ 
+}
+.testelista {
+    padding: 15%;
+    text-align: center;
+    width: 80%;
+    height: 50%;
+  
+
+}
