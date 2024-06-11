@@ -90,6 +90,8 @@ INSERT INTO USERS VALUES ('FRANK OCEAN','ILOVELIFE','FRANKOCEAN@GMAIL.COM','11-0
 INSERT INTO USERS VALUES ('Maria', 'outra_senha', 'maria@email.com', '1985-08-20', 'Feminino');
 INSERT INTO USERS VALUES ('Pedro', 'senha_secreta', 'pedro@email.com', '1995-03-10', 'Masculino');
 INSERT INTO USERS VALUES ('Vitinho','matematica123','vitnholopes@gmail.com','22-09-2004','Homem');
+<<<<<<< HEAD
+=======
 
 ---ATUALIZEI O USER, NO CASO O GENERO
 UPDATE USERS
@@ -130,3 +132,48 @@ INSERT INTO Funcionario VALUES ('Carine Viliy','02-07-1978','Feminino','Osasco',
  --   Fun_Email 
 
  select * from funcionario
+>>>>>>> 53a16cf0929146415e21e45bb017837cc57e7198
+
+---ATUALIZEI O USER, NO CASO O GENERO
+UPDATE USERS
+SET uSER_gENERO = 'MASCULINO'
+WHERE USER_ID = 2 
+
+<<<<<<< HEAD
+UPDATE USERS 
+SET USER_SENHA = '12345678'
+WHERE USER_ID = 4
+
+UPDATE USERS 
+SET USER_GENERO = 'MASCULINO'
+WHERE USER_ID = 7
+
+--APAGUEI UMA TABELA Q ESTAVA A MAIS E IGUAL
+DELETE FROM USERS WHERE USER_ID = 6
+
+SELECT * FROM USERS
+
+INSERT INTO Funcionario VALUES ('KItty Wayne','11-08-2000','Feminino','Barueri-SP','11953610244','KittyWay11@gmail.com',null);
+INSERT INTO Funcionario VALUES ('João Lucas','25-05-1972','Masculino','Carapicuiba-SP','11947826699','JoaoLucas@gmail.com',null);
+INSERT INTO Funcionario VALUES ('Luan Henrique','02-05-2001','Masculino','Barueri-SP','11971699455','Luancaterin@Iclod.com', null);
+INSERT INTO Funcionario VALUES ('Marianne Costa','01-11-1995','Feminino','Alphaville-SP','11941558878', 'marianegatinha@hotmaill.com', null);
+INSERT INTO Funcionario VALUES ('Julia Catrina','04-05-1971','Feminino','Jandira-SP','11947458865','Juliastre@gmail.com',null);
+INSERT INTO Funcionario VALUES ('Victor Lopes','02-02-1992','Masculino','Barueri-SP','11942455295','lopesgatrup@gmail.com',null);
+INSERT INTO Funcionario VALUES ('Laurindo Cruz','11-12-2000','Masculino','Barueri-SP','62945852566','cruzxpso@gmail.com',null);
+INSERT INTO Funcionario VALUES ('Rony Cabral','25-09-2000','Masculino','Barueri-SP','11925657848','cabralprodutor@gmail.com',null);
+INSERT INTO Funcionario VALUES ('Katherine Mello','04-05-2004','Feminino','Alphaville','11842586699','mellovictin@gmail.com',null);
+INSERT INTO Funcionario VALUES ('Carine Viliy','02-07-1978','Feminino','Osasco','11971694166','fofolete@gmail.com',null);
+
+--Funcionario (
+ --   Fun_Id INT PRIMARY KEY IDENTITY(1,1),
+ --   Fun_Name VARCHAR(65),
+  --  Fun_Nasc DATE,
+  --  Fun_Genero VARCHAR (20),
+  --  Fun_Ende VARCHAR(65),
+ --   Fun_Num INT,
+ --   Fun_Email 
+
+ select * from funcionario
+=======
+
+>>>>>>> 53a16cf0929146415e21e45bb017837cc57e7198
