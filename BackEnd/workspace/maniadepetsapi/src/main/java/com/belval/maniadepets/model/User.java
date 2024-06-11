@@ -1,5 +1,6 @@
 package com.belval.maniadepets.model;
 
+import java.sql.Date;
 import java.util.Objects;
 
 import jakarta.persistence.Column;
@@ -16,66 +17,90 @@ public class User {
 	//Atributos
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "id_produto") 
-	private Integer id;
+	@Column(name = "User_id") 
+	private Integer UserId;
 	
-	@Column(name = "nm_produto")
-	private String nome;
+	@Column(name = "User_name")
+	private String UserName;
 	
-	@Column(name = "ds_produto")
-	private String descricao;
+	@Column(name = "User_senha")
+	private String UserSenha;
 	
-	@Column(name = "preco_produto")
-	private double preco;
+	@Column(name = "User_Email")
+	private String UserEmail;
+	
+	@Column(name = "User_Nasc")
+	private Date UserNasc;
+	
+	@Column(name = "User_Genero")
+	private String UserGenero;
 	
 	//Método construtor padrão, isto é, sem parâmetros
 	public User() {
 		
 	}
 
-	//Alt + SHIFT + S > Generate contructor using Fields
-	public User(Integer id, String nome, String descricao, double preco) {
-		this.id = id;
-		this.nome = nome;
-		this.descricao = descricao;
-		this.preco = preco;
+	public User(Integer userId, String userName, String userSenha, String userEmail, Date userNasc, String userGenero) {
+		super();
+		UserId = userId;
+		UserName = userName;
+		UserSenha = userSenha;
+		UserEmail = userEmail;
+		UserNasc = userNasc;
+		UserGenero = userGenero;
 	}
 
-	public Integer getId() {
-		return id;
+	public Integer getUserId() {
+		return UserId;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setUserId(Integer userId) {
+		UserId = userId;
 	}
 
-	public String getNome() {
-		return nome;
+	public String getUserName() {
+		return UserName;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setUserName(String userName) {
+		UserName = userName;
 	}
 
-	public String getDescricao() {
-		return descricao;
+	public String getUserSenha() {
+		return UserSenha;
 	}
 
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
+	public void setUserSenha(String userSenha) {
+		UserSenha = userSenha;
 	}
 
-	public double getPreco() {
-		return preco;
+	public String getUserEmail() {
+		return UserEmail;
 	}
 
-	public void setPreco(double preco) {
-		this.preco = preco;
+	public void setUserEmail(String userEmail) {
+		UserEmail = userEmail;
+	}
+
+	public Date getUserNasc() {
+		return UserNasc;
+	}
+
+	public void setUserNasc(Date userNasc) {
+		UserNasc = userNasc;
+	}
+
+	public String getUserGenero() {
+		return UserGenero;
+	}
+
+	public void setUserGenero(String userGenero) {
+		UserGenero = userGenero;
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(descricao, id, nome, preco);
+		return Objects.hash(UserId);
 	}
 
 	@Override
@@ -87,16 +112,13 @@ public class User {
 		if (getClass() != obj.getClass())
 			return false;
 		User other = (User) obj;
-		return Objects.equals(descricao, other.descricao) && Objects.equals(id, other.id)
-				&& Objects.equals(nome, other.nome)
-				&& Double.doubleToLongBits(preco) == Double.doubleToLongBits(other.preco);
+		return Objects.equals(UserId, other.UserId);
 	}
 
-	@Override
-	public String toString() {
-		return "Produto [id=" + id + ", nome=" + nome + ", descricao=" + descricao + ", preco=" + preco + "]";
-	}
 
+
+
+	
 	
 	
 }

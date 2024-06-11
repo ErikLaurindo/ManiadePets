@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.belval.maniadepets.model.Produto;
+import com.belval.maniadepets.model.User;
 import com.belval.maniadepets.repository.ProdutoRepository;
+import com.belval.maniadepets.repository.UserRepository;
 
 @RestController
 public class ProdutoController {
@@ -25,7 +27,10 @@ public class ProdutoController {
 //	private static ProdutoRepository repository = 
 //			new ProdutoRepository();
 	@Autowired
-	private ProdutoRepository repository;
+	private UserRepository userRepository;
+	
+	//@Autowired
+	//private ProdutoRepository produtoRepository;
 	
 
 	static {
@@ -33,19 +38,19 @@ public class ProdutoController {
 //		listaProdutos.add(prod);
 	}
 	
-	@GetMapping("/produtos")
-	public ResponseEntity<Iterable<Produto>> obterProdutos() {
+	@GetMapping("/User")
+	public ResponseEntity<Iterable<User>> obterUser() {
 		return ResponseEntity
 				.status(HttpStatus.OK)
-				.body(repository.findAll());
+				.body( userRepository.findAll());
 	}
 
 	//curl POST http://localhost:8080/produtos -H "Content-Type: application/json; Charset=utf-8" -d @produto-mortadela.json
-	
-	@PostMapping("/produtos")
+	/*
+	@PostMapping("/User")
 	public ResponseEntity<Produto> criarProduto(@RequestBody Produto produto) {
 		
-		repository.save(produto);
+		produtoRepository.save(produto);
 		
 		return ResponseEntity
 				.status(HttpStatus.CREATED)
@@ -53,10 +58,10 @@ public class ProdutoController {
 	}
 	
 	//curl GET http://localhost:8080/produtos/1
-	@GetMapping("/produtos/{id}")
+	@GetMapping("/User/{id}")
 	public ResponseEntity<Object> buscarProdutoPorId(@PathVariable Integer id) {
 		
-		Optional<Produto> produto = repository.findById(id);
+		Optional<Produto> produto = produtoRepository.findById(id);
 		
 		if(!produto.isPresent()) {
 			return ResponseEntity
@@ -70,11 +75,11 @@ public class ProdutoController {
 	}
 	
 	//curl -X DELETE http://localhost:8080/produtos/1
-	@DeleteMapping("/produtos/{id}")
+	@DeleteMapping("/User/{id}")
 	public ResponseEntity<Object> apagar(@PathVariable Integer id) {
 		
 		
-		Optional<Produto> produto = repository.findById(id);
+		Optional<Produto> produto = produtoRepository.findById(id);
 		
 		if(!produto.isPresent()) {
 			return ResponseEntity
@@ -82,7 +87,7 @@ public class ProdutoController {
 					.body("Produto não encontrado.");
 		}
 		
-		repository.delete(produto.get());
+		produtoRepository.delete(produto.get());
 		
 		return ResponseEntity
 				.status(HttpStatus.OK)
@@ -91,7 +96,7 @@ public class ProdutoController {
 	
 	//Observação: para métodos que não sejam o GET e o POST é necessário colocar o -X(menos xis maiúsculo)
 	//curl -X PUT http://localhost:8080/produtos/1 -H "Content-Type: application/json; Charset=utf-8" -d @produto-mortadela2.json
-	@PutMapping("/produtos/{id}")
+	@PutMapping("/User/{id}")
 	public ResponseEntity<Object> atualizarProduto(
 			@PathVariable(value = "id")Integer id,
 			@RequestBody Produto produto) {
@@ -111,5 +116,5 @@ public class ProdutoController {
 				.status(HttpStatus.OK)
 				.body("Produto atualizado com sucesso.");
 	}
-	
+	*/
 }

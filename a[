@@ -1,0 +1,361 @@
+[1mdiff --git a/BackEnd/workspace/maniadepetsapi/src/main/java/com/belval/maniadepets/controller/ProdutoController.java b/BackEnd/workspace/maniadepetsapi/src/main/java/com/belval/maniadepets/controller/ProdutoController.java[m
+[1mindex 0826c22..53d9f2d 100644[m
+[1m--- a/BackEnd/workspace/maniadepetsapi/src/main/java/com/belval/maniadepets/controller/ProdutoController.java[m
+[1m+++ b/BackEnd/workspace/maniadepetsapi/src/main/java/com/belval/maniadepets/controller/ProdutoController.java[m
+[36m@@ -14,7 +14,9 @@[m [mimport org.springframework.web.bind.annotation.RequestBody;[m
+ import org.springframework.web.bind.annotation.RestController;[m
+ [m
+ import com.belval.maniadepets.model.Produto;[m
+[32m+[m[32mimport com.belval.maniadepets.model.User;[m
+ import com.belval.maniadepets.repository.ProdutoRepository;[m
+[32m+[m[32mimport com.belval.maniadepets.repository.UserRepository;[m
+ [m
+ @RestController[m
+ public class ProdutoController {[m
+[36m@@ -25,7 +27,10 @@[m [mpublic class ProdutoController {[m
+ //	private static ProdutoRepository repository = [m
+ //			new ProdutoRepository();[m
+ 	@Autowired[m
+[31m-	private ProdutoRepository repository;[m
+[32m+[m	[32mprivate UserRepository userRepository;[m
+[32m+[m[41m	[m
+[32m+[m	[32m//@Autowired[m
+[32m+[m	[32m//private ProdutoRepository produtoRepository;[m
+ 	[m
+ [m
+ 	static {[m
+[36m@@ -33,19 +38,19 @@[m [mpublic class ProdutoController {[m
+ //		listaProdutos.add(prod);[m
+ 	}[m
+ 	[m
+[31m-	@GetMapping("/produtos")[m
+[31m-	public ResponseEntity<Iterable<Produto>> obterProdutos() {[m
+[32m+[m	[32m@GetMapping("/User")[m
+[32m+[m	[32mpublic ResponseEntity<Iterable<User>> obterUser() {[m
+ 		return ResponseEntity[m
+ 				.status(HttpStatus.OK)[m
+[31m-				.body(repository.findAll());[m
+[32m+[m				[32m.body( userRepository.findAll());[m
+ 	}[m
+ [m
+ 	//curl POST http://localhost:8080/produtos -H "Content-Type: application/json; Charset=utf-8" -d @produto-mortadela.json[m
+[31m-	[m
+[31m-	@PostMapping("/produtos")[m
+[32m+[m	[32m/*[m
+[32m+[m	[32m@PostMapping("/User")[m
+ 	public ResponseEntity<Produto> criarProduto(@RequestBody Produto produto) {[m
+ 		[m
+[31m-		repository.save(produto);[m
+[32m+[m		[32mprodutoRepository.save(produto);[m
+ 		[m
+ 		return ResponseEntity[m
+ 				.status(HttpStatus.CREATED)[m
+[36m@@ -53,10 +58,10 @@[m [mpublic class ProdutoController {[m
+ 	}[m
+ 	[m
+ 	//curl GET http://localhost:8080/produtos/1[m
+[31m-	@GetMapping("/produtos/{id}")[m
+[32m+[m	[32m@GetMapping("/User/{id}")[m
+ 	public ResponseEntity<Object> buscarProdutoPorId(@PathVariable Integer id) {[m
+ 		[m
+[31m-		Optional<Produto> produto = repository.findById(id);[m
+[32m+[m		[32mOptional<Produto> produto = produtoRepository.findById(id);[m
+ 		[m
+ 		if(!produto.isPresent()) {[m
+ 			return ResponseEntity[m
+[36m@@ -70,11 +75,11 @@[m [mpublic class ProdutoController {[m
+ 	}[m
+ 	[m
+ 	//curl -X DELETE http://localhost:8080/produtos/1[m
+[31m-	@DeleteMapping("/produtos/{id}")[m
+[32m+[m	[32m@DeleteMapping("/User/{id}")[m
+ 	public ResponseEntity<Object> apagar(@PathVariable Integer id) {[m
+ 		[m
+ 		[m
+[31m-		Optional<Produto> produto = repository.findById(id);[m
+[32m+[m		[32mOptional<Produto> produto = produtoRepository.findById(id);[m
+ 		[m
+ 		if(!produto.isPresent()) {[m
+ 			return ResponseEntity[m
+[36m@@ -82,7 +87,7 @@[m [mpublic class ProdutoController {[m
+ 					.body("Produto não encontrado.");[m
+ 		}[m
+ 		[m
+[31m-		repository.delete(produto.get());[m
+[32m+[m		[32mprodutoRepository.delete(produto.get());[m
+ 		[m
+ 		return ResponseEntity[m
+ 				.status(HttpStatus.OK)[m
+[36m@@ -91,7 +96,7 @@[m [mpublic class ProdutoController {[m
+ 	[m
+ 	//Observação: para métodos que não sejam o GET e o POST é necessário colocar o -X(menos xis maiúsculo)[m
+ 	//curl -X PUT http://localhost:8080/produtos/1 -H "Content-Type: application/json; Charset=utf-8" -d @produto-mortadela2.json[m
+[31m-	@PutMapping("/produtos/{id}")[m
+[32m+[m	[32m@PutMapping("/User/{id}")[m
+ 	public ResponseEntity<Object> atualizarProduto([m
+ 			@PathVariable(value = "id")Integer id,[m
+ 			@RequestBody Produto produto) {[m
+[36m@@ -111,5 +116,5 @@[m [mpublic class ProdutoController {[m
+ 				.status(HttpStatus.OK)[m
+ 				.body("Produto atualizado com sucesso.");[m
+ 	}[m
+[31m-	[m
+[32m+[m	[32m*/[m
+ }[m
+[1mdiff --git a/BackEnd/workspace/maniadepetsapi/src/main/java/com/belval/maniadepets/model/User.java b/BackEnd/workspace/maniadepetsapi/src/main/java/com/belval/maniadepets/model/User.java[m
+[1mindex fd0bdb6..245be55 100644[m
+[1m--- a/BackEnd/workspace/maniadepetsapi/src/main/java/com/belval/maniadepets/model/User.java[m
+[1m+++ b/BackEnd/workspace/maniadepetsapi/src/main/java/com/belval/maniadepets/model/User.java[m
+[36m@@ -1,5 +1,6 @@[m
+ package com.belval.maniadepets.model;[m
+ [m
+[32m+[m[32mimport java.sql.Date;[m
+ import java.util.Objects;[m
+ [m
+ import jakarta.persistence.Column;[m
+[36m@@ -16,66 +17,90 @@[m [mpublic class User {[m
+ 	//Atributos[m
+ 	@Id[m
+ 	@GeneratedValue(strategy = GenerationType.AUTO)[m
+[31m-	@Column(name = "id_produto") [m
+[31m-	private Integer id;[m
+[32m+[m	[32m@Column(name = "User_id")[m[41m [m
+[32m+[m	[32mprivate Integer UserId;[m
+ 	[m
+[31m-	@Column(name = "nm_produto")[m
+[31m-	private String nome;[m
+[32m+[m	[32m@Column(name = "User_name")[m
+[32m+[m	[32mprivate String UserName;[m
+ 	[m
+[31m-	@Column(name = "ds_produto")[m
+[31m-	private String descricao;[m
+[32m+[m	[32m@Column(name = "User_senha")[m
+[32m+[m	[32mprivate String UserSenha;[m
+ 	[m
+[31m-	@Column(name = "preco_produto")[m
+[31m-	private double preco;[m
+[32m+[m	[32m@Column(name = "User_Email")[m
+[32m+[m	[32mprivate String UserEmail;[m
+[32m+[m[41m	[m
+[32m+[m	[32m@Column(name = "User_Nasc")[m
+[32m+[m	[32mprivate Date UserNasc;[m
+[32m+[m[41m	[m
+[32m+[m	[32m@Column(name = "User_Genero")[m
+[32m+[m	[32mprivate String UserGenero;[m
+ 	[m
+ 	//Método construtor padrão, isto é, sem parâmetros[m
+ 	public User() {[m
+ 		[m
+ 	}[m
+ [m
+[31m-	//Alt + SHIFT + S > Generate contructor using Fields[m
+[31m-	public User(Integer id, String nome, String descricao, double preco) {[m
+[31m-		this.id = id;[m
+[31m-		this.nome = nome;[m
+[31m-		this.descricao = descricao;[m
+[31m-		this.preco = preco;[m
+[32m+[m	[32mpublic User(Integer userId, String userName, String userSenha, String userEmail, Date userNasc, String userGenero) {[m
+[32m+[m		[32msuper();[m
+[32m+[m		[32mUserId = userId;[m
+[32m+[m		[32mUserName = userName;[m
+[32m+[m		[32mUserSenha = userSenha;[m
+[32m+[m		[32mUserEmail = userEmail;[m
+[32m+[m		[32mUserNasc = userNasc;[m
+[32m+[m		[32mUserGenero = userGenero;[m
+[32m+[m	[32m}[m
+[32m+[m
+[32m+[m	[32mpublic Integer getUserId() {[m
+[32m+[m		[32mreturn UserId;[m
+[32m+[m	[32m}[m
+[32m+[m
+[32m+[m	[32mpublic void setUserId(Integer userId) {[m
+[32m+[m		[32mUserId = userId;[m
+[32m+[m	[32m}[m
+[32m+[m
+[32m+[m	[32mpublic String getUserName() {[m
+[32m+[m		[32mreturn UserName;[m
+ 	}[m
+ [m
+[31m-	public Integer getId() {[m
+[31m-		return id;[m
+[32m+[m	[32mpublic void setUserName(String userName) {[m
+[32m+[m		[32mUserName = userName;[m
+ 	}[m
+ [m
+[31m-	public void setId(Integer id) {[m
+[31m-		this.id = id;[m
+[32m+[m	[32mpublic String getUserSenha() {[m
+[32m+[m		[32mreturn UserSenha;[m
+ 	}[m
+ [m
+[31m-	public String getNome() {[m
+[31m-		return nome;[m
+[32m+[m	[32mpublic void setUserSenha(String userSenha) {[m
+[32m+[m		[32mUserSenha = userSenha;[m
+ 	}[m
+ [m
+[31m-	public void setNome(String nome) {[m
+[31m-		this.nome = nome;[m
+[32m+[m	[32mpublic String getUserEmail() {[m
+[32m+[m		[32mreturn UserEmail;[m
+ 	}[m
+ [m
+[31m-	public String getDescricao() {[m
+[31m-		return descricao;[m
+[32m+[m	[32mpublic void setUserEmail(String userEmail) {[m
+[32m+[m		[32mUserEmail = userEmail;[m
+ 	}[m
+ [m
+[31m-	public void setDescricao(String descricao) {[m
+[31m-		this.descricao = descricao;[m
+[32m+[m	[32mpublic Date getUserNasc() {[m
+[32m+[m		[32mreturn UserNasc;[m
+ 	}[m
+ [m
+[31m-	public double getPreco() {[m
+[31m-		return preco;[m
+[32m+[m	[32mpublic void setUserNasc(Date userNasc) {[m
+[32m+[m		[32mUserNasc = userNasc;[m
+ 	}[m
+ [m
+[31m-	public void setPreco(double preco) {[m
+[31m-		this.preco = preco;[m
+[32m+[m	[32mpublic String getUserGenero() {[m
+[32m+[m		[32mreturn UserGenero;[m
+[32m+[m	[32m}[m
+[32m+[m
+[32m+[m	[32mpublic void setUserGenero(String userGenero) {[m
+[32m+[m		[32mUserGenero = userGenero;[m
+ 	}[m
+ [m
+ 	@Override[m
+ 	public int hashCode() {[m
+[31m-		return Objects.hash(descricao, id, nome, preco);[m
+[32m+[m		[32mreturn Objects.hash(UserId);[m
+ 	}[m
+ [m
+ 	@Override[m
+[36m@@ -87,16 +112,13 @@[m [mpublic class User {[m
+ 		if (getClass() != obj.getClass())[m
+ 			return false;[m
+ 		User other = (User) obj;[m
+[31m-		return Objects.equals(descricao, other.descricao) && Objects.equals(id, other.id)[m
+[31m-				&& Objects.equals(nome, other.nome)[m
+[31m-				&& Double.doubleToLongBits(preco) == Double.doubleToLongBits(other.preco);[m
+[32m+[m		[32mreturn Objects.equals(UserId, other.UserId);[m
+ 	}[m
+ [m
+[31m-	@Override[m
+[31m-	public String toString() {[m
+[31m-		return "Produto [id=" + id + ", nome=" + nome + ", descricao=" + descricao + ", preco=" + preco + "]";[m
+[31m-	}[m
+ [m
+[32m+[m
+[32m+[m
+[32m+[m[41m	[m
+ 	[m
+ 	[m
+ }[m
+[1mdiff --git a/BackEnd/workspace/maniadepetsapi/src/main/java/com/belval/maniadepets/repository/ProdutoRepository.java b/BackEnd/workspace/maniadepetsapi/src/main/java/com/belval/maniadepets/repository/ProdutoRepository.java[m
+[1mindex b74d7a4..c2d56ea 100644[m
+[1m--- a/BackEnd/workspace/maniadepetsapi/src/main/java/com/belval/maniadepets/repository/ProdutoRepository.java[m
+[1m+++ b/BackEnd/workspace/maniadepetsapi/src/main/java/com/belval/maniadepets/repository/ProdutoRepository.java[m
+[36m@@ -2,13 +2,14 @@[m [mpackage com.belval.maniadepets.repository;[m
+ [m
+ import java.util.List;[m
+ [m
+[31m-import org.springframework.data.repository.CrudRepository;[m
+[32m+[m[32mimport org.springframework.stereotype.Repository;[m
+ [m
+ import com.belval.maniadepets.model.Produto;[m
+ [m
+[31m-public interface ProdutoRepository extends CrudRepository<Produto, Integer> {[m
+[31m-	[m
+[32m+[m
+[32m+[m[32m@Repository[m
+[32m+[m[32mpublic interface ProdutoRepository {[m
+ 	//Select * from Produto where descricao = <parametro>[m
+[31m-	List<Produto> findByDescricao(String descricao);[m
+[32m+[m		[32mList<Produto> findByDescricao(String descricao);[m
+ [m
+ }[m
+[1mdiff --git a/BancoDeDados/MANIADEPET.sql b/BancoDeDados/MANIADEPET.sql[m
+[1mindex 7467a03..b1213e2 100644[m
+[1m--- a/BancoDeDados/MANIADEPET.sql[m
+[1m+++ b/BancoDeDados/MANIADEPET.sql[m
+[36m@@ -1,11 +1,11 @@[m
+[31m-USE MASTER IF EXISTS(SELECT * FROM SYS.databases WHERE NAME = 'MANIADEPET')[m
+[32m+[m[32mUSE MASTER IF EXISTS(SELECT * FROM SYS.databases WHERE NAME = 'MANIADEPETDB')[m
+ DROP DATABASE MANIADEPET[m
+ GO[m
+ [m
+[31m-CREATE DATABASE MANIADEPET[m
+[32m+[m[32mCREATE DATABASE MANIADEPETDB[m
+ GO[m
+ [m
+[31m-USE MANIADEPET[m
+[32m+[m[32mUSE MANIADEPETDB[m
+ GO[m
+ [m
+ [m
+[36m@@ -78,9 +78,55 @@[m [mCREATE TABLE Imagem_Doc ([m
+ );[m
+ [m
+ [m
+[32m+[m[32mINSERT INTO USERS VALUES ('KITTY WAYNE','070415','KITTYWAY@GMAIL.COM','11-08-2006','FEMININO');[m
+[32m+[m[32mINSERT INTO USERS VALUES ('JOAO SOARES', 'SOARES7', 'JOAOSOARES@GMAL.COM', '23-02-2006','MASCULINO');[m[41m [m
+[32m+[m[32mINSERT INTO USERS VALUES ('LUIZ GUSTAVO ALVES', '0705200817','A60K109@GMAIL.COM','07-05-2007','MASCULINO');[m[41m [m
+[32m+[m[32mINSERT INTO USERS VALUES ('LUCAS','12345678','LUCASHENRI@GMAIL.COM','14-06-1979','MASCULINO');[m[41m [m
+[32m+[m[32mINSERT INTO USERS VALUES ('LAIS LOTUS','LA16012008@','00001133102918SP@AL.EDUCACAO.SP.GOV.BR','16-01-2008','FEMININO');[m[41m [m
+[32m+[m[32mINSERT INTO USERS VALUES ('JULIN ENTORTOR','EUTEAMOMAE','DICKJACKSON@GMAIL.COM','06-06-2006','TRANSGENERO');[m[41m [m
+[32m+[m[32mINSERT INTO USERS VALUES ('JACK','31081979','J@GMAIL.COM','31-08-1979','MASCULINO');[m[41m [m
+[32m+[m[32mINSERT INTO USERS VALUES ('GABRIEL','TIMAO25163','GABRIELOMAISGAY@GMAIL.COM','30-03-2005','NAO BINARIO');[m[41m [m
+[32m+[m[32mINSERT INTO USERS VALUES ('FRANK OCEAN','ILOVELIFE','FRANKOCEAN@GMAIL.COM','11-01-2001','TRANSGENERO');[m
+[32m+[m[32mINSERT INTO USERS VALUES ('Maria', 'outra_senha', 'maria@email.com', '1985-08-20', 'Feminino');[m
+[32m+[m[32mINSERT INTO USERS VALUES ('Pedro', 'senha_secreta', 'pedro@email.com', '1995-03-10', 'Masculino');[m
+[32m+[m[32mINSERT INTO USERS VALUES ('Vitinho','matematica123','vitnholopes@gmail.com','22-09-2004','Homem');[m
+ [m
+[32m+[m[32m---ATUALIZEI O USER, NO CASO O GENERO[m
+[32m+[m[32mUPDATE USERS[m
+[32m+[m[32mSET uSER_gENERO = 'MASCULINO'[m
+[32m+[m[32mWHERE USER_ID = 2[m[41m [m
+ [m
+[31m-INSERT INTO USERS VALUES ('JACK','123','J@GMAIL.COM','31-08-1979','MASCULINO')[m
+[32m+[m[32mUPDATE USERS[m[41m [m
+[32m+[m[32mSET USER_SENHA = '12345678'[m
+[32m+[m[32mWHERE USER_ID = 4[m
+ [m
+[31m-SELECT [m
+[31m-* FROM USERS[m
+\ No newline at end of file[m
+[32m+[m[32mUPDATE USERS[m[41m [m
+[32m+[m[32mSET USER_GENERO = 'MASCULINO'[m
+[32m+[m[32mWHERE USER_ID = 7[m
+[32m+[m
+[32m+[m[32m--APAGUEI UMA TABELA Q ESTAVA A MAIS E IGUAL[m
+[32m+[m[32mDELETE FROM USERS WHERE USER_ID = 6[m
+[32m+[m
+[32m+[m[32mSELECT * FROM USERS[m
+[32m+[m
+[32m+[m[32mINSERT INTO Funcionario VALUES ('KItty Wayne','11-08-2000','Feminino','Barueri-SP','11953610244','KittyWay11@gmail.com',null);[m
+[32m+[m[32mINSERT INTO Funcionario VALUES ('Jo�o Lucas','25-05-1972','Masculino','Carapicuiba-SP','11947826699','JoaoLucas@gmail.com',null);[m
+[32m+[m[32mINSERT INTO Funcionario VALUES ('Luan Henrique','02-05-2001','Masculino','Barueri-SP','11971699455','Luancaterin@Iclod.com', null);[m
+[32m+[m[32mINSERT INTO Funcionario VALUES ('Marianne Costa','01-11-1995','Feminino','Alphaville-SP','11941558878', 'marianegatinha@hotmaill.com', null);[m
+[32m+[m[32mINSERT INTO Funcionario VALUES ('Julia Catrina','04-05-1971','Feminino','Jandira-SP','11947458865','Juliastre@gmail.com',null);[m
+[32m+[m[32mINSERT INTO Funcionario VALUES ('Victor Lopes','02-02-1992','Masculino','Barueri-SP','11942455295','lopesgatrup@gmail.com',null);[m
+[32m+[m[32mINSERT INTO Funcionario VALUES ('Laurindo Cruz','11-12-2000','Masculino','Barueri-SP','62945852566','cruzxpso@gmail.com',null);[m
+[32m+[m[32mINSERT INTO Funcionario VALUES ('Rony Cabral','25-09-2000','Masculino','Barueri-SP','11925657848','cabralprodutor@gmail.com',null);[m
+[32m+[m[32mINSERT INTO Funcionario VALUES ('Katherine Mello','04-05-2004','Feminino','Alphaville','11842586699','mellovictin@gmail.com',null);[m
+[32m+[m[32mINSERT INTO Funcionario VALUES ('Carine Viliy','02-07-1978','Feminino','Osasco','11971694166','fofolete@gmail.com',null);[m
+[32m+[m
+[32m+[m[32m--Funcionario ([m
+[32m+[m[32m --   Fun_Id INT PRIMARY KEY IDENTITY(1,1),[m
+[32m+[m[32m --   Fun_Name VARCHAR(65),[m
+[32m+[m[32m  --  Fun_Nasc DATE,[m
+[32m+[m[32m  --  Fun_Genero VARCHAR (20),[m
+[32m+[m[32m  --  Fun_Ende VARCHAR(65),[m
+[32m+[m[32m --   Fun_Num INT,[m
+[32m+[m[32m --   Fun_Email[m[41m [m
+[32m+[m
+[32m+[m[32m select * from funcionario[m
+\ No newline at end of file[m
