@@ -1,5 +1,6 @@
 package com.belval.maniadepets.controller;
 
+
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,60 +14,45 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.belval.maniadepets.model.Produto;
 import com.belval.maniadepets.model.User;
-import com.belval.maniadepets.repository.ProdutoRepository;
 import com.belval.maniadepets.repository.UserRepository;
 
 @RestController
-public class ProdutoController {
-
-//	private static List<Produto> listaProdutos = new ArrayList<>();
-//	private static Integer proxId = 1;
+public class UserController {
 	
-//	private static ProdutoRepository repository = 
-//			new ProdutoRepository();
 	@Autowired
 	private UserRepository userRepository;
-	
-	//@Autowired
-	//private ProdutoRepository produtoRepository;
-	
 
-	static {
-//		Produto prod = new Produto(1, "Pão", "Pão Francês", 0.5);
-//		listaProdutos.add(prod);
-	}
-	
-	@GetMapping("/User")
+	@GetMapping("/users")
 	public ResponseEntity<Iterable<User>> obterUser() {
+		
 		return ResponseEntity
 				.status(HttpStatus.OK)
-				.body( userRepository.findAll());
+				.body(userRepository.findAll());
 	}
+	
+	//curl POST http://localhost:8080/users -H "Content-Type: application/json; Charset=utf-8" -d @user1.json
 
-	//curl POST http://localhost:8080/produtos -H "Content-Type: application/json; Charset=utf-8" -d @produto-mortadela.json
-	/*
-	@PostMapping("/User")
-	public ResponseEntity<Produto> criarProduto(@RequestBody Produto produto) {
+	@PostMapping("/users")
+	public ResponseEntity<User> criarProduto(@RequestBody User user) {
 		
-		produtoRepository.save(produto);
+		userRepository.save(user);
 		
 		return ResponseEntity
 				.status(HttpStatus.CREATED)
-				.body(produto);
+				.body(user);
 	}
 	
-	//curl GET http://localhost:8080/produtos/1
-	@GetMapping("/User/{id}")
+	//curl GET http://localhost:8080/users/1
+	@GetMapping("/users/{id}")
 	public ResponseEntity<Object> buscarProdutoPorId(@PathVariable Integer id) {
 		
-		Optional<Produto> produto = produtoRepository.findById(id);
+		Optional<User> produto = userRepository.findById(id);
 		
 		if(!produto.isPresent()) {
 			return ResponseEntity
 					.status(HttpStatus.NOT_FOUND)
-					.body("Produto não encontrado.");
+					.body("Usuário não encontrado.");
 		}
 		
 		return ResponseEntity
@@ -74,47 +60,46 @@ public class ProdutoController {
 				.body(produto.get());
 	}
 	
-	//curl -X DELETE http://localhost:8080/produtos/1
-	@DeleteMapping("/User/{id}")
+	//curl -X DELETE http://localhost:8080/users/1
+	@DeleteMapping("/users/{id}")
 	public ResponseEntity<Object> apagar(@PathVariable Integer id) {
 		
+		//ALT+SHIFT+R -> renomeia todas as ocorrências da variável/metodo/classe
+		Optional<User> user = userRepository.findById(id);
 		
-		Optional<Produto> produto = produtoRepository.findById(id);
-		
-		if(!produto.isPresent()) {
+		if(!user.isPresent()) {
 			return ResponseEntity
 					.status(HttpStatus.NOT_FOUND)
-					.body("Produto não encontrado.");
+					.body("Usuário não encontrado.");
 		}
 		
-		produtoRepository.delete(produto.get());
+		userRepository.delete(user.get());
 		
 		return ResponseEntity
 				.status(HttpStatus.OK)
-				.body("Produto apagado com sucesso!");	
+				.body("Usuário apagado com sucesso!");	
 	}
 	
 	//Observação: para métodos que não sejam o GET e o POST é necessário colocar o -X(menos xis maiúsculo)
-	//curl -X PUT http://localhost:8080/produtos/1 -H "Content-Type: application/json; Charset=utf-8" -d @produto-mortadela2.json
-	@PutMapping("/User/{id}")
+	//curl -X PUT http://localhost:8080/users/1 -H "Content-Type: application/json; Charset=utf-8" -d @user1.json
+	@PutMapping("/users/{id}")
 	public ResponseEntity<Object> atualizarProduto(
 			@PathVariable(value = "id")Integer id,
-			@RequestBody Produto produto) {
+			@RequestBody User produto) {
 		
-		Optional<Produto> produtoEncontrado = repository.findById(id);
+		Optional<User> produtoEncontrado = userRepository.findById(id);
 		
 		if (produtoEncontrado.isEmpty()) {
 			return ResponseEntity
 					.status(HttpStatus.NOT_FOUND)
-					.body("Produto não encontrado.");
+					.body("Usuário não encontrado.");
 		}
 		
-		produto.setId(id);
-		repository.save(produto);
+		produto.setUserId(id);
+		userRepository.save(produto);
 		
 		return ResponseEntity
 				.status(HttpStatus.OK)
-				.body("Produto atualizado com sucesso.");
+				.body("Usuário atualizado com sucesso.");
 	}
-	*/
 }

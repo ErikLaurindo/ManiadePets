@@ -1,6 +1,5 @@
 package com.belval.maniadepets.model;
 
-import java.sql.Date;
 import java.util.Objects;
 
 import jakarta.persistence.Column;
@@ -30,7 +29,9 @@ public class User {
 	private String UserEmail;
 	
 	@Column(name = "User_Nasc")
-	private Date UserNasc;
+	//@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+	//@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	private String UserNasc;
 	
 	@Column(name = "User_Genero")
 	private String UserGenero;
@@ -40,7 +41,7 @@ public class User {
 		
 	}
 
-	public User(Integer userId, String userName, String userSenha, String userEmail, Date userNasc, String userGenero) {
+	public User(Integer userId, String userName, String userSenha, String userEmail, String userNasc, String userGenero) {
 		super();
 		UserId = userId;
 		UserName = userName;
@@ -82,11 +83,11 @@ public class User {
 		UserEmail = userEmail;
 	}
 
-	public Date getUserNasc() {
+	public String getUserNasc() {
 		return UserNasc;
 	}
 
-	public void setUserNasc(Date userNasc) {
+	public void setUserNasc(String userNasc) {
 		UserNasc = userNasc;
 	}
 
@@ -118,6 +119,7 @@ public class User {
 
 
 
+	
 	
 	
 	
