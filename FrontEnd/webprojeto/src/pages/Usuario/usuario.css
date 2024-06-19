@@ -12,7 +12,10 @@
 .form-group{
     margin-left: 0;
     margin-top: 7%;
-    margin-bottom: 10%;
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 16px;
+   
    
    
    
@@ -26,18 +29,37 @@
 
 }
 
-input{
+input, select{
     
     width: 300px;
     padding: 7px;
     
 }
-.button{
-    padding: 20%;
+select{
+    
+    width: 323px;
+    padding: 7px;
+    
 }
+
 .label{
     margin-right: 60%;
 }
 .imagem{
     margin-left: 15%
+}
+button {
+    width: 60%; /* Define a largura do botão para ocupar toda a largura do contêiner pai */
+    padding: 15px; /* Ajusta o preenchimento interno do botão */
+    font-size: 15px; /* Ajusta o tamanho da fonte do texto do botão */
+    background-color: #007bff; /* Cor de fundo do botão */
+    color: white; /* Cor do texto do botão */
+    border: none; /* Remove a borda do botão */
+    cursor: pointer; /* Muda o cursor para indicar que é clicável */
+    border-radius: 10px; /* Adiciona bordas arredondadas ao botão */
+    transition: background-color 0.3s ease; /* Transição suave para a cor de fundo */
+
+}
+button:hover {
+    background-color: #00b30c; /* Cor de fundo do botão ao passar o mouse */
 }

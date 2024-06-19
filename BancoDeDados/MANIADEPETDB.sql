@@ -17,6 +17,9 @@ CREATE TABLE Users (
     User_Nasc DATE,
     User_Genero VARCHAR(50)
 );
+SELECT * FROM Users
+INSERT INTO Users VALUES ('1','laurindoerik@gmail.com','masculino','Erik','26022003','123456');
+delete
 
 CREATE TABLE Info_Pet ( 
 Pet_Id INT PRIMARY KEY IDENTITY(1,1),
@@ -107,9 +110,9 @@ SET USER_GENERO = 'MASCULINO'
 WHERE USER_ID = 7
 
 --APAGUEI UMA TABELA Q ESTAVA A MAIS E IGUAL
-DELETE FROM USERS WHERE USER_ID = 6
+DELETE FROM USERS WHERE USER_ID = 1
 
-SELECT * FROM Users
+
 
 INSERT INTO Funcionario VALUES ('KItty Wayne','11-08-2000','Feminino','Barueri-SP','11953610244','KittyWay11@gmail.com',null);
 INSERT INTO Funcionario VALUES ('João Lucas','25-05-1972','Masculino','Carapicuiba-SP','11947826699','JoaoLucas@gmail.com',null);

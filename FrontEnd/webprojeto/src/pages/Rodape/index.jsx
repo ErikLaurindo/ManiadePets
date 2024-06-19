@@ -33,15 +33,7 @@ const Rodape = () => {
                        </div>
                        <div className='testelista'>
                         
-                       <ul className='Rodapelinks'>
-                        
-                           <li> <Link to={"/"} className="Home">Home</Link></li>
-                           <li> <Link to={"/usuario"} className="Cadastro">Cadastro</Link> </li>
-                           <li> <Link to={"/usuario"} className="Dúvidas">Dúvidas</Link> </li>
-                           <li> <Link to={"/usuario"} className="Parcerias">Parcerias</Link> </li>
-                           <li> <Link to={"/usuario"} className="Contatos">Contatos</Link> </li>
-                           
-                       </ul>
+                      
                        
                        </div>
             </footer>
@@ -50,3 +42,12 @@ const Rodape = () => {
 
 }
 export default Rodape;
+/* <ul className='Rodapelinks'>
+                        
+                           <li> <Link to={"/"} className="Home">Home</Link></li>
+                           <li> <Link to={"/usuario"} className="Cadastro">Cadastro</Link> </li>
+                           <li> <Link to={"/usuario"} className="Dúvidas">Dúvidas</Link> </li>
+                           <li> <Link to={"/usuario"} className="Parcerias">Parcerias</Link> </li>
+                           <li> <Link to={"/usuario"} className="Contatos">Contatos</Link> </li>
+                           
+                       </ul>*/

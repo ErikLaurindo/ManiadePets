@@ -1,8 +1,40 @@
-import style from './duvidas.css'
+import './duvidas.css'
+ 
+ 
+ function TextoImagem(params){
+    return(
+       
+        <div className={style.corpo}>
+        <div className={style.divflex}>  
+            <img className={style.imagem} src={params.imagem} />
+ 
+            <div className={style.textos}>
+               
+           
+                <p className={style.titulotx}>   {params.titulo1} </p>
+                <p className={style.texto}> {params.texto1} </p>
+                <p className={style.titulotx}>   {params.titulo2} </p>
+                <p className={style.texto}> {params.texto2} </p>
+                <p className={style.titulotx}>   {params.titulo3} </p>
+                <p className={style.texto}> {params.texto3} </p>
+ 
+ 
+             
+            </div>
+            </div>
+ 
+            </div>
+    )
+ 
+}
+
+/*import style from '../estilizacao/duvidas.module.css'
+import TextoImagem from './componentes/textoimg'
 import Cachorro from "../imagens/cachorro_oficial.jpg"
 
 
- function Duvidas() { 
+
+export default function duvidas() { 
     return (
         <section className={style.container}>
             <h1>Dúvidas</h1>
@@ -21,6 +53,6 @@ import Cachorro from "../imagens/cachorro_oficial.jpg"
         </section>
 
     )
-}
+}*/
 
-export default Duvidas;
+export default TextoImagem;

@@ -17,91 +17,104 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "User_id") 
-	private Integer UserId;
+	private Integer userId;
 	
 	@Column(name = "User_name")
-	private String UserName;
+	private String userName;
 	
 	@Column(name = "User_senha")
-	private String UserSenha;
+	private String userSenha;
 	
 	@Column(name = "User_Email")
-	private String UserEmail;
+	private String userEmail;
 	
 	@Column(name = "User_Nasc")
+<<<<<<< HEAD
 	//@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
 	//@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private String UserNasc;
+=======
+	private Date userNasc;
+>>>>>>> ccaa3b2 (atualização de api(concluido))
 	
 	@Column(name = "User_Genero")
-	private String UserGenero;
-	
-	//Método construtor padrão, isto é, sem parâmetros
+	private String userGenero;
+
 	public User() {
-		
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	public User(Integer userId, String userName, String userSenha, String userEmail, String userNasc, String userGenero) {
 		super();
-		UserId = userId;
-		UserName = userName;
-		UserSenha = userSenha;
-		UserEmail = userEmail;
-		UserNasc = userNasc;
-		UserGenero = userGenero;
+		this.userId = userId;
+		this.userName = userName;
+		this.userSenha = userSenha;
+		this.userEmail = userEmail;
+		this.userNasc = userNasc;
+		this.userGenero = userGenero;
 	}
 
 	public Integer getUserId() {
-		return UserId;
+		return userId;
 	}
 
 	public void setUserId(Integer userId) {
-		UserId = userId;
+		this.userId = userId;
 	}
 
 	public String getUserName() {
-		return UserName;
+		return userName;
 	}
 
 	public void setUserName(String userName) {
-		UserName = userName;
+		this.userName = userName;
 	}
 
 	public String getUserSenha() {
-		return UserSenha;
+		return userSenha;
 	}
 
 	public void setUserSenha(String userSenha) {
-		UserSenha = userSenha;
+		this.userSenha = userSenha;
 	}
 
 	public String getUserEmail() {
-		return UserEmail;
+		return userEmail;
 	}
 
 	public void setUserEmail(String userEmail) {
-		UserEmail = userEmail;
+		this.userEmail = userEmail;
 	}
 
+<<<<<<< HEAD
 	public String getUserNasc() {
 		return UserNasc;
 	}
 
 	public void setUserNasc(String userNasc) {
 		UserNasc = userNasc;
+=======
+	public Date getUserNasc() {
+		return userNasc;
+	}
+
+	public void setUserNasc(Date userNasc) {
+		this.userNasc = userNasc;
+>>>>>>> ccaa3b2 (atualização de api(concluido))
 	}
 
 	public String getUserGenero() {
-		return UserGenero;
+		return userGenero;
 	}
 
 	public void setUserGenero(String userGenero) {
-		UserGenero = userGenero;
+		this.userGenero = userGenero;
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(UserId);
+		return Objects.hash(userEmail, userGenero, userId, userName, userNasc, userSenha);
 	}
 
 	@Override
@@ -113,14 +126,18 @@ public class User {
 		if (getClass() != obj.getClass())
 			return false;
 		User other = (User) obj;
-		return Objects.equals(UserId, other.UserId);
+		return Objects.equals(userEmail, other.userEmail) && Objects.equals(userGenero, other.userGenero)
+				&& Objects.equals(userId, other.userId) && Objects.equals(userName, other.userName)
+				&& Objects.equals(userNasc, other.userNasc) && Objects.equals(userSenha, other.userSenha);
 	}
 
-
-
-
+	@Override
+	public String toString() {
+		return "User [userId=" + userId + ", userName=" + userName + ", userSenha=" + userSenha + ", userEmail="
+				+ userEmail + ", userNasc=" + userNasc + ", userGenero=" + userGenero + "]";
+	}
 	
-	
+	//Método construtor padrão, isto é, sem parâmetros
 	
 	
 }
