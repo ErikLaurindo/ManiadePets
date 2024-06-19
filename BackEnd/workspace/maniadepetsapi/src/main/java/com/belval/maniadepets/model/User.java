@@ -29,13 +29,8 @@ public class User {
 	private String userEmail;
 	
 	@Column(name = "User_Nasc")
-<<<<<<< HEAD
-	//@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
-	//@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-	private String UserNasc;
-=======
-	private Date userNasc;
->>>>>>> ccaa3b2 (atualização de api(concluido))
+	private String userNasc;
+
 	
 	@Column(name = "User_Genero")
 	private String userGenero;
@@ -87,21 +82,13 @@ public class User {
 		this.userEmail = userEmail;
 	}
 
-<<<<<<< HEAD
-	public String getUserNasc() {
-		return UserNasc;
-	}
 
-	public void setUserNasc(String userNasc) {
-		UserNasc = userNasc;
-=======
-	public Date getUserNasc() {
+	public String getUserNasc() {
 		return userNasc;
 	}
 
-	public void setUserNasc(Date userNasc) {
+	public void setUserNasc(String userNasc) {
 		this.userNasc = userNasc;
->>>>>>> ccaa3b2 (atualização de api(concluido))
 	}
 
 	public String getUserGenero() {

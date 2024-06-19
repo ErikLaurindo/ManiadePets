@@ -1,26 +1,22 @@
 package com.belval.maniadepets.controller;
 
-<<<<<<< HEAD:BackEnd/workspace/maniadepetsapi/src/main/java/com/belval/maniadepets/controller/UserController.java
 
 import java.util.Optional;
 
-=======
->>>>>>> ccaa3b2 (atualização de api(concluido)):BackEnd/workspace/maniadepetsapi/src/main/java/com/belval/maniadepets/controller/ProdutoController.java
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-<<<<<<< HEAD:BackEnd/workspace/maniadepetsapi/src/main/java/com/belval/maniadepets/controller/UserController.java
-import com.belval.maniadepets.model.User;
-=======
 import com.belval.maniadepets.model.InfoPet;
 import com.belval.maniadepets.model.User;
 import com.belval.maniadepets.repository.InfoPetRepository;
->>>>>>> ccaa3b2 (atualização de api(concluido)):BackEnd/workspace/maniadepetsapi/src/main/java/com/belval/maniadepets/controller/ProdutoController.java
 import com.belval.maniadepets.repository.UserRepository;
 
 
@@ -29,15 +25,6 @@ public class UserController {
 	
 	@Autowired
 	private UserRepository userRepository;
-<<<<<<< HEAD:BackEnd/workspace/maniadepetsapi/src/main/java/com/belval/maniadepets/controller/UserController.java
-
-	@GetMapping("/users")
-	public ResponseEntity<Iterable<User>> obterUser() {
-		
-		return ResponseEntity
-				.status(HttpStatus.OK)
-				.body(userRepository.findAll());
-=======
 	
 	@Autowired
 	private InfoPetRepository infopetRepository;
@@ -65,7 +52,6 @@ public class UserController {
 			return ResponseEntity
 					.status(HttpStatus.OK)
 					.body( infopetRepository.findAll());
->>>>>>> ccaa3b2 (atualização de api(concluido)):BackEnd/workspace/maniadepetsapi/src/main/java/com/belval/maniadepets/controller/ProdutoController.java
 	}
 	
 	//curl POST http://localhost:8080/users -H "Content-Type: application/json; Charset=utf-8" -d @user1.json
