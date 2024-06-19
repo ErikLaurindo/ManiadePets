@@ -26,17 +26,6 @@ public class UserController {
 	@Autowired
 	private UserRepository userRepository;
 	
-	@Autowired
-	private InfoPetRepository infopetRepository;
-	
-	//@Autowired
-	//private ProdutoRepository produtoRepository;
-	
-
-	static {
-//		Produto prod = new Produto(1, "Pão", "Pão Francês", 0.5);
-//		listaProdutos.add(prod);
-	}
 	
 	@PostMapping("/User") 
 	public ResponseEntity<String> obterUser(@RequestBody User user ) {
@@ -46,13 +35,6 @@ public class UserController {
 				.body( "Sucesso");
 	}
 		
-	
-	@GetMapping("/InfoPet")
-		public ResponseEntity<Iterable<InfoPet>> obterInfoPet() {
-			return ResponseEntity
-					.status(HttpStatus.OK)
-					.body( infopetRepository.findAll());
-	}
 	
 	//curl POST http://localhost:8080/users -H "Content-Type: application/json; Charset=utf-8" -d @user1.json
 
